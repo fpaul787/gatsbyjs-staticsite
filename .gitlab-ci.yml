@@ -3,13 +3,14 @@ image: node #default image
 stages:
   - build
   - test
-#   - deploy
+  - deploy
   - deployment tests
 
 
 build website:
   stage: build
   script:
+    - echo $CI_COMMIT_SHORT_SHA
     - npm install
     - npm install -g gatsby-cli
     - gatsby build
@@ -33,15 +34,15 @@ test website:
       - sleep 3
       - curl "http://localhost:9000" | tac | tac | grep -q "Gatsby"
 
-# deploy to surge:
-#   stage: deploy
-#   script: 
-#     - npm install --global surge
-#     - surge --project ./public --domain greenpoopisawesomecauseYOUsaidso.surge.sh  
+deploy to surge:
+  stage: deploy
+  script: 
+    - npm install --global surge
+    - surge --project ./public --domain greenpoopisawesomecauseYOUsaidso.surge.sh  
 
 test deployment:
   stage: deployment tests
   script: 
-    - curl -s "https://greenpoopisawesomecauseIsaidso.surge.sh" | grep -q "Hi People"
+    - curl -s "https://greenpoopisawesomecauseIsaidso.surge.sh" | grep "Hi people"
 
       

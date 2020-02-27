@@ -1,0 +1,7 @@
+sed - stream editor
+for filtering and transforming text
+Ex sed -i 's/word1/word2/g' inputfile
+word1 will be replaced with word2
+-i for edit in place (edit the same file, don't create a new one)
+s for substitute
+g for global replacement
