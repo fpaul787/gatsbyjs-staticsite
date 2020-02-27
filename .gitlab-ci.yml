@@ -42,6 +42,6 @@ test website:
 test deployment:
   stage: deployment tests
   script: 
-    - curl -s "https://greenpoopisawesomecauseIsaidso.surge.sh" | grep -q "Gatsby"
+    - curl -s "https://greenpoopisawesomecauseIsaidso.surge.sh" | grep -q "Hi People"
 
       
