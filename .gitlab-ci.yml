@@ -4,6 +4,7 @@ stages:
   - build
   - test
   - deploy
+  - deployment tests
 
 
 build website:
@@ -36,5 +37,11 @@ deploy to surge:
   stage: deploy
   script: 
     - npm install --global surge
-    - surge --project ./public --domain greenpoopisawesome.surge.sh  
+    - surge --project ./public --domain greenpoopisawesomecauseIsaidso.surge.sh  
+
+test deployment:
+  stage: deployment tests
+  script: 
+    - curl "greenpoopisawesomecauseIsaidso.surge.sh" | tac | tac | grep -q "Gatsby"
+
       
