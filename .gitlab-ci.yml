@@ -26,13 +26,13 @@ test artifact:
       - grep -q "Gatsby" ./public/index.html
 
 test website:
-    stage: test
-    script:
-      - npm install
-      - npm install -g gatsby-cli
-      - gatsby serve &
-      - sleep 3
-      - curl "http://localhost:9000" | tac | tac | grep -q "Gatsby"
+  stage: test
+  script:
+    - npm install
+    - npm install -g gatsby-cli
+    - gatsby serve &
+    - sleep 3
+    - curl "http://localhost:9000" | tac | tac | grep -q "Gatsby"
 
 deploy to surge:
   stage: deploy
@@ -43,6 +43,6 @@ deploy to surge:
 test deployment:
   stage: deployment tests
   script: 
-    - curl -s "https://greenpoopisawesomecauseIsaidso.surge.sh" | grep "Hi people"
+    - curl "https://greenpoopisawesomecauseIsaidso.surge.sh" | grep "Hi people"
 
       
