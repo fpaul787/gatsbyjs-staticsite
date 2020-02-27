@@ -41,8 +41,10 @@ deploy to surge:
     - surge --project ./public --domain greenpoopisawesomecauseYOUsaidso.surge.sh  
 
 test deployment:
+  image: alpine
   stage: deployment tests
   script: 
-    - curl "https://greenpoopisawesomecauseIsaidso.surge.sh" | grep "Hi people"
+    - apk add --no-cache curl
+    - curl -s "https://greenpoopisawesomecauseIsaidso.surge.sh" | grep -q "Hi people"
 
       
