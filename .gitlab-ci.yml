@@ -37,7 +37,7 @@ deploy to surge:
   stage: deploy
   script: 
     - npm install --global surge
-    - surge --project ./public --domain greenpoopisawesomecauseIsaidso.surge.sh  
+    - surge --project ./public --domain greenpoopisawesomecauseYOUsaidso.surge.sh  
 
 test deployment:
   stage: deployment tests
