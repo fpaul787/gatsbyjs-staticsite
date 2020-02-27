@@ -3,7 +3,7 @@ image: node #default image
 stages:
   - build
   - test
-  - deploy
+#   - deploy
   - deployment tests
 
 
