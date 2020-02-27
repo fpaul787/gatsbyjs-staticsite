@@ -42,6 +42,6 @@ deploy to surge:
 test deployment:
   stage: deployment tests
   script: 
-    - curl "greenpoopisawesomecauseIsaidso.surge.sh" | tac | tac | grep -q "Gatsby"
+    - curl "greenpoopisawesomecauseIsaidso.surge.sh" | grep "Gatsby"
 
       
