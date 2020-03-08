@@ -30,8 +30,6 @@ update cache:
     paths:
       - node_modules/
     policy: push
-  only:
-    - schedules
 
 build website:
   stage: build
@@ -44,8 +42,6 @@ build website:
   artifacts:
     paths:
       - ./public
-  except:
-    - schedules #If you don't want to run a job when the pipeline is triggered by a scheduled run
 
 
 test artifact:
@@ -54,8 +50,6 @@ test artifact:
     cache: {}
     script:
       - grep -q "Gatsby" ./public/index.html
-    except:
-      - schedules
 
 test website:
   stage: test
@@ -65,8 +59,6 @@ test website:
     - gatsby serve &
     - sleep 3
     - curl "http://localhost:9000" | tac | tac | grep -q "Gatsby"
-  except:
-    - schedules
 
 deploy staging:
   stage: deploy staging
@@ -76,8 +68,6 @@ deploy staging:
   script: 
     - npm install --global surge
     - surge --project ./public --domain greenpoopisawesome-staging.surge.sh  
-  except:
-    - schedules
 
 
 
@@ -90,8 +80,6 @@ deploy production:
   script: 
     - npm install --global surge
     - surge --project ./public --domain greenpoopisawesome.surge.sh  
-  except:
-    - schedules
 
 production tests:
   image: alpine
@@ -101,5 +89,3 @@ production tests:
     - apk add --no-cache curl
     - curl -s "https://greenpoopisawesome.surge.sh" | grep -q "Hi people"
     - curl -s "https://greenpoopisawesome.surge.sh" | grep -q "$CI_COMMIT_SHORT_SHA"  
-  except:
-    - schedules 
