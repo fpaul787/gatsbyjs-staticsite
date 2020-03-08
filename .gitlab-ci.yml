@@ -21,6 +21,11 @@ cache:
     - node_modules/
   policy: pull #only pulling the cache, not uploading (push)
 
+variables:
+  STAGING_DOMAIN: greenpoopisawesome-staging.surge.sh
+  PRODUCTION_DOMAIN: greenpoopisawesome.surge.sh
+
+
 update cache:
   stage: cache
   script: 
@@ -72,10 +77,10 @@ deploy staging:
   stage: deploy staging
   environment: 
     name: staging
-    url: http://greenpoopisawesome-staging.surge.sh
+    url: http://$STAGING_DOMAIN
   script: 
     - npm install --global surge
-    - surge --project ./public --domain greenpoopisawesome-staging.surge.sh  
+    - surge --project ./public --domain $STAGING_DOMAIN  
   except:
     - schedules
 
@@ -84,10 +89,10 @@ deploy production:
   stage: deploy production
   environment: 
     name: production
-    url: http://greenpoopisawesome-staging.surge.sh
+    url: $PRODUCTION_DOMAIN
   script: 
     - npm install --global surge
-    - surge --project ./public --domain greenpoopisawesome.surge.sh  
+    - surge --project ./public --domain $PRODUCTION_DOMAIN 
   except:
     - schedules
 
